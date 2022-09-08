@@ -1,3 +1,3 @@
-function alert() {
-    console.log("Fish");
+function alert(input) {
+    console.log(input);
 }
