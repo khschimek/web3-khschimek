@@ -1,7 +1,8 @@
 number = 0;
 
 function alert() {
-    document.getElementById("number").innerHTML = number+1;
+    number += 1;
+    document.getElementById("number").innerHTML = number;
 }
 
 function start() {
