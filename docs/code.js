@@ -30,6 +30,6 @@ function plusTen() {
 }
 
 function plusHundred() {
-    number += 10;
+    number += 100;
     load();
 }
