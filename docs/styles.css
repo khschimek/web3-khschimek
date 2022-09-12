@@ -2,3 +2,53 @@ Body {
 	background-color: lightgreen;
 	font-family: 'Times New Roman', Times, serif;
 }
+
+.NavigationBar {
+
+    overflow:hidden;
+
+    background-color: lightgrey;
+
+    height: 50px;
+
+}
+
+.NavigationBar a {
+
+    float: left;
+
+    background-color: lightgrey;
+
+    color: black;
+
+    text-align: center;
+    
+    padding-left: 15px;
+
+    padding-right: 15px;
+    
+    padding-top: 12px;
+
+    padding-bottom: 20px;
+    
+    text-decoration: none;
+
+    font-size: 25px;
+
+}
+
+.NavigationBar a:hover {
+
+    background-color:black;
+
+    color:white;
+
+}
+
+.NavigationBar a.active {
+
+    background-color: darkgrey;
+
+    color: white;
+
+}

@@ -7,17 +7,17 @@ function reset() {
     load();
 }
 
-function plusOne() {
-    number += 1;
+function plusOne(mult) {
+    number += mult*1;
     load();
 }
 
-function plusTen() {
-    number += 10;
+function plusTen(mult) {
+    number += mult*10;
     load();
 }
 
-function plusHundred() {
-    number += 100;
+function plusHundred(mult) {
+    number += mult*100;
     load();
 }
