@@ -1,21 +1,9 @@
-number = 0;
-
 function load() {
     document.getElementById("number").innerHTML = number;
 }
 
-function plusPointZeroZeroOne() {
-    number += 0.001;
-    load();
-}
-
-function plusPointZeroOne() {
-    number += 0.01;
-    load();
-}
-
-function plusPointOne() {
-    number += 0.1;
+function reset() {
+    number = 0;
     load();
 }
 
