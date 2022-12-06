@@ -4,16 +4,9 @@
     // Checks if the input is valid
     $ok = TRUE;
     $ok = $ok && preg_match("/^(|-?[0-9]+([.][0-9]+)?)$/",$x);
-    $ok = $ok && preg_match("/^(|-?[0-9]+([.][0-9]+)?)$/",$y);
   
     if (!$ok) {
       exit("bad form data.");
-    }
-  
-    if ($x == ((float) $x) && $y == ((float) $y)) {
-      $z = ((float)$x) + ((float)$y); 
-    }  else {
-      $z = "";
     }
   
     function nohtmlentities($x) {
