@@ -1,62 +1,41 @@
 <!DOCTYPE html>
-<script>
-    function SendRequestToServer(url, method, request, handler) {
-        const xhttp = new XMLHttpRequest();
-        const encodedRequest = JSON.stringify(request);
-        const parameters = "request=" + encodeURIComponent(encodedRequest);
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                json = JSON.parse(this.response);
-                handler(json);
-            }
-        }
-        if(method=="GET") {
-            url = url + "?" + parameters;
-        }
-        xhttp.open(method, url, true);
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log(encodedRequest);
-        if(method=="POST") {
-            xhttp.send(parameters);
-        }
-        else {
-            xhttp.send();
-        }
-        console.log('server request sent');
-    }
-    function ProcessResponse(response) {
-        if (response.status == "ok") {
-            document.getElementById("z").value = response.value;
-        }
-        else {
-            alert(response.message);
-        }
-    }
-    function addOnServer() {
-        const x=parseFloat(document.getElementById("x").value);
-        const y=parseFloat(document.getElementById("y").value);
-        url = "http://localhost/work.php";
-        method = "POST";
-        request = {'op': 'add', 'args': [x,y]};
-        SendRequestToServer(url,method,request,
-            (response)=>ProcessResponse(response));
-    }
-</script>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Page Name</title>
+        <title>Dog Walking Chart</title>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <form onsubmit="addOnServer(); return false;">
-            <input type="text" id="x" name="x" placeholder="x" >
-            +
-            <input type="text" id="y" name="y" placeholder="y" >
-            =
-            <input type="text" id="z" name="z" placeholder="x+y" >
-            <input type="submit" value="?">
-        </form>
+        <h1>Sunday</h1>
+        <p id="sunday">Not Walked</p>
+        <button>Change</button>
+        <br><br>
+        <h1>Monday</h1>
+        <p id="monday">Not Walked</p>
+        <button>Change</button>
+        <br><br>
+        <h1>Tuesday</h1>
+        <p id="tuesday">Not Walked</p>
+        <button>Change</button>
+        <br><br>
+        <h1>Wednesday</h1>
+        <p id="wednesday">Not Walked</p>
+        <button>Change</button>
+        <br><br>
+        <h1>Thursday</h1>
+        <p id="thursday">Not Walked</p>
+        <button>Change</button>
+        <br><br>
+        <h1>Friday</h1>
+        <p id="friday">Not Walked</p>
+        <button>Change</button>
+        <br><br>
+        <h1>Saturday</h1>
+        <p id="saturday">Not Walked</p>
+        <button>Change</button>
+        <br><br>
+        <script src="script.js"></script>
     </body>
 </html>
