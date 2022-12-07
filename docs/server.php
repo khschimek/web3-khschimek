@@ -1,48 +1,28 @@
 <?php
+    require_once('connect.php');
     $request = json_decode($_REQUEST['request'], true);
+    $stmt = $pdo->query("SELECT * FROM new_table");
+    $array = array();
+    while ($list = $stmt->fetch()) {
+        array_push($array,$list['walked']);
+    }
+
     if ($request['op']=="update") {
-        $ok = TRUE;
-        $action = -1.0;
-        foreach ($request['args'] as $key => $value) {
-            $ok = $ok && preg_match("/^(-?[0-9]+([.][0-9]+)?)$/",$value);
-            if ($ok) {
-                //something happens
-            }
-        }
-
-        if ($ok) {
-            $response = array('status' => 'ok', 'op' => 'update', 'day' =>  $request['day'], 'value' => $action);
-        } 
-        else {
-            $response = array('status' => 'fail', 'message' => 'not all values are numbers');
-        }
+        $action = (-1.0)*$array[$request['day']-1];
+        $data = ['walked'=>$action, 'id'=>$request['day']];
+        $update = "UPDATE new_table SET walked=:walked Where id=:id";
+        $pdo->prepare($update)->execute($data);
+        $response = array('status' => 'ok', 'op' => 'update', 'day' =>  $request['day'], 'value' => $action);
     }
+
     else if ($request['op']=="talk") {
-        $ok = TRUE;
-        $sunday = -1.0;
-        $monday = -1.0;
-        $tuesday = -1.0;
-        $wednesday = -1.0;
-        $thursday = -1.0;
-        $friday = -1.0;
-        $saturday = -1.0;
-        foreach ($request['args'] as $key => $value) {
-            $ok = $ok && preg_match("/^(-?[0-9]+([.][0-9]+)?)$/",$value);
-            if ($ok) {
-                //something happens
-            }
-        }
-
-        if ($ok) {
-            $response = array('status' => 'ok',  'op' => 'talk', 'sunValue' =>  $sunday, 'monValue' =>  $monday, 'tuesValue' =>  $tuesday, 'wednesValue' =>  $wednesday, 'thursValue' =>  $thursday, 'friValue' =>  $friday, 'saturValue' =>  $saturday);
-        } 
-        else {
-            $response = array('status' => 'fail', 'message' => 'not all values are numbers');
-        }
+        $response = array('status' => 'ok',  'op' => 'talk', 'sunValue' =>  $array[0], 'monValue' =>  $array[1], 'tuesValue' =>  $array[2], 'wednesValue' =>  $array[3], 'thursValue' =>  $array[4], 'friValue' =>  $array[5], 'saturValue' =>  $array[6]);
     }
+
     else {
         $response = array('status' => 'fail', 'message' => 'unknown op');
-    }    
+    }
+
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($response);
 ?>
